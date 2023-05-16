@@ -1,0 +1,36 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.card {
+  padding: 20px;
+  background: linear-gradient(to bottom, #ff00d4, #fefefe);
+
+  color: black;
+  width: 50px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.card:hover{
+  background-color: #7e7e7e;
+}

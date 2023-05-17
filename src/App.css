@@ -34,3 +34,7 @@
 .card:hover{
   background-color: #7e7e7e;
 }
+
+.playButtons {
+  padding: 50px;
+}

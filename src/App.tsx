@@ -47,7 +47,7 @@ function App() {
 
   const startGame = () => {
     // determine number of tiles. Must total even number
-    const size = 4;
+    const size = 2;
     const numOfTiles = size * size;
 
     // create matching pairs and put into 2d array
@@ -62,6 +62,9 @@ function App() {
     }
     // randomise 2d array and set state
     setGrid(shuffleCells(grid));
+
+    // set revealedGrid of type boolean[][]
+    setRevealedGrid(new Array(size).fill("").map(() => new Array(size).fill(false)))
   };
 
   function handleCardClicked(rowIndex: number, colIndex: number) {
@@ -87,9 +90,10 @@ function App() {
           newRevealedGrid[previousClick.rowIndex][previousClick.colIndex] =
             false;
           setRevealedGrid([...newRevealedGrid]);
-        }, 1000);
+        }, 750);
       } else {
         // they match
+        if(checkGameover()) alert('You Win!')
       }
       setPreviousClick(undefined);
     } else {
@@ -97,6 +101,15 @@ function App() {
       setPreviousClick(clickedCell);
     }
   }
+
+  const resetGame = () => {
+    const revealedGridCopy = [...revealedGrid]
+    revealedGridCopy.map((row) => row.fill(false)); // this works somehow and resets the state
+    startGame();
+  };
+
+  const checkGameover = () => revealedGrid.flat().every(tile => tile)
+  
 
   return (
     <div className="app">
@@ -114,6 +127,9 @@ function App() {
             ))}
           </div>
         ))}
+      </div>
+      <div className="playButtons">
+        <button onClick={() => resetGame()}>New Game</button>
       </div>
     </div>
   );
